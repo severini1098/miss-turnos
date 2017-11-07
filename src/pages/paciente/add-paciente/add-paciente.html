@@ -18,22 +18,27 @@
     
       <ion-item>
         <ion-label floating>Nombre</ion-label>
-        <ion-input type="text" value=""></ion-input>
+        <ion-input type="text" [(ngModel)] = "paciente.nombre"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label floating>Apellido</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)] = "paciente.apellido"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>DNI</ion-label>
+        <ion-input type="text" [(ngModel)] = "paciente.dni"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Teléfono</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)] = "paciente.telefono"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Mail</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)] = "paciente.mail"></ion-input>
       </ion-item>
     
   </ion-list>

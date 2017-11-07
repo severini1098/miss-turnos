@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { TurnosApi } from '../../../shared/turnos-api';
 /**
  * Generated class for the AddPacientePage page.
  *
@@ -14,8 +14,15 @@ import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angu
   templateUrl: 'add-paciente.html',
 })
 export class AddPacientePage {
+  paciente = {
+    nombre: "", 
+    apellido: "", 
+    dni: "", 
+    telefono: "", 
+    mail: ""
+  };
 
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private turnosApi: TurnosApi, private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -29,14 +36,16 @@ export class AddPacientePage {
       buttons: [
         {
           text: 'Si', 
-          handler: () => {
-            console.log('Si')
+          handler: () => {            
+            this.turnosApi.savePaciente(this.paciente).subscribe(data => {        
+              this.paciente = data                         
+            });
           }
         }, 
         {
           text: 'No', 
           handler: () => {
-            console.log('Si')
+            console.log(this.paciente)
           }
         }
       ]

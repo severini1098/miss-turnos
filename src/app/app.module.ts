@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { HomePage, ListPage, TurnosPage, PacientePage, AddPacientePage } from '../pages/pages';
+import { HomePage, ListPage, TurnosPage, PacientePage, AddPacientePage, ListPacientePage } from '../pages/pages';
 import { TurnosApi } from '../shared/turnos-api';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,7 +17,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage, 
     TurnosPage, 
     PacientePage, 
-    AddPacientePage
+    AddPacientePage,
+    ListPacientePage
   ],
   imports: [
     BrowserModule,    
@@ -31,7 +32,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     TurnosPage,
     PacientePage,
-    AddPacientePage
+    AddPacientePage,
+    ListPacientePage
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AddPacientePage } from '../paciente/add-paciente/add-paciente'
+import { AddPacientePage } from '../paciente/add-paciente/add-paciente';
+import { ListPacientePage } from '../paciente/list-paciente/list-paciente';
 
 /**
  * Generated class for the PacientePage page.
@@ -24,7 +25,11 @@ export class PacientePage {
   }
 
   addPerson() {
-    this.navCtrl.push(AddPacientePage)
+    this.navCtrl.push(AddPacientePage);
+  }
+
+  listaDePacientes() {
+    this.navCtrl.push(ListPacientePage);
   }
 
 }
