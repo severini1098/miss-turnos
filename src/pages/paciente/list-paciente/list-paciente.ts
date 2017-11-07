@@ -32,14 +32,19 @@ export class ListPacientePage {
     });
   }
 
-  borrarPaciente($event, paciente) {    
+  borrarPaciente($event, paciente) {   
+    let index = this.pacientes.indexOf(paciente);      
     this.turnosApi
         .borrarPaciente(paciente._links.self.href)
         .subscribe(
-          result => this.presentToast("Paciente eliminado"), 
+          result => {
+            this.presentToast("Paciente eliminado");
+            if(index > -1){
+              this.pacientes.splice(index, 1);
+           }   
+          },
           error => this.presentToast("Hubo un error y no se pudo completar el borrado")      
-        );
-      
+        );        
   }
 
   presentToast(resultMessage) {
