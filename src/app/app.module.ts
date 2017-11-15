@@ -10,18 +10,21 @@ import { TurnosApi } from '../shared/turnos-api';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { NgCalendarModule  } from 'ionic2-calendar';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage, 
-    TurnosPage, 
-    PacientePage, 
+    ListPage,
+    TurnosPage,
+    PacientePage,
     AddPacientePage,
     ListPacientePage
   ],
   imports: [
-    BrowserModule,    
+    NgCalendarModule,
+    BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule
   ],
@@ -38,8 +41,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}, 
-    TurnosApi    
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TurnosApi
   ]
 })
 export class AppModule {}
