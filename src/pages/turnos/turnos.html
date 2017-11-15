@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Turnos</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      Mis turnos
+    </ion-list-header>
+
+    <button ion-item *ngFor="let turno of turnos" (click)="itemTapped($event, turno)">
+        <ion-icon [name]="Turno" item-start></ion-icon>
+        Horadio de comienzo: {{turno.horarioDeComienzo}}
+        <div class="item-note" item-end>
+        Duracion: {{turno.sessionDuration}} 
+        </div>
+      </button>
+
+  </ion-list>
+  
+</ion-content>

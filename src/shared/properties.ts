@@ -1,0 +1,1 @@
+const HEROKU_TURNOS_BE_URL = "https://turnos-be.herokuapp.com"

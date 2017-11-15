@@ -1,0 +1,32 @@
+<!--
+  Generated template for the ListPacientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Todos los pacientes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ 
+ <ion-card *ngFor= "let paciente of pacientes">
+  
+    <ion-item>
+      <ion-avatar item-start>        
+        <ion-icon name="person"></ion-icon>
+      </ion-avatar>
+      <h2>{{paciente.nombre}}, {{paciente.apellido}}</h2>
+      <p>Teléfono: {{paciente.telefono}}</p>
+      <p>Mail: {{paciente.mail}}</p>      
+      <button ion-button icon-right clear small (click)="borrarPaciente($event, paciente)">Borrar</button>      
+    </ion-item>
+  
+  </ion-card>
+
+</ion-content>
