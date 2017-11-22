@@ -10,9 +10,15 @@
 </ion-header>
 
 <ion-content>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Paciente" [(ngModel)]="queryText" (ionInput)="updatePacientes()" animated="true" autocomplete="on"></ion-searchbar>
+    <ion-item *ngFor="let paciente of filteredPacientes" (click)="selectPaciente(paciente)">
+      {{paciente.nombre}}, {{paciente.apellido}}
+    </ion-item>
+  </ion-toolbar>
   <ion-list>
     <ion-item>
-      <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+      <ion-input type="text" placeholder="Paciente" (ngModel)="this.selectedPaciente.nombre"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -26,8 +32,8 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>All Day?</ion-label>
-      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+      <ion-label>Repite?</ion-label>
+      <ion-checkbox [(ngModel)]="event.repite"></ion-checkbox>
     </ion-item>
   </ion-list>
 

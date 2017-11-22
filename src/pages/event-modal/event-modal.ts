@@ -1,34 +1,7 @@
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, NavParams, ViewController } from 'ionic-angular';
 import * as moment from 'moment';
+import {TurnosApi} from "../../shared/turnos-api";
 
 @IonicPage()
 @Component({
@@ -37,10 +10,14 @@ import * as moment from 'moment';
 })
 export class EventModalPage {
 
-  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
+  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), repite: false };
   minDate = new Date().toISOString();
+  queryText: string;
+  pacientes: any[];
+  filteredPacientes: any[];
+  selectedPaciente: any;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(private turnosApi: TurnosApi, private loadingController: LoadingController, public navCtrl: NavController, private navParams: NavParams, public viewCtrl: ViewController) {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
     this.event.startTime = preselectedDate;
     this.event.endTime = preselectedDate;
@@ -54,4 +31,30 @@ export class EventModalPage {
     this.viewCtrl.dismiss(this.event);
   }
 
+  ionViewDidLoad() {
+    let loader = this.loadingController.create({
+      content: 'Getting data...'
+    });
+
+    loader.present().then(() => {
+      this.turnosApi.getPacientes().subscribe(data => {
+        this.pacientes = data.pacientes;
+        this.filteredPacientes = this.pacientes;
+        loader.dismiss();
+      });
+    });
+  }
+
+  updatePacientes() {
+    this.filteredPacientes = this.pacientes;
+    let queryTextLower = this.queryText.toLowerCase();
+    this.filteredPacientes = this.pacientes.filter((paciente) => {
+      return paciente.nombre.toLowerCase().indexOf(queryTextLower) > -1 || paciente.apellido.toLowerCase().indexOf(queryTextLower) > -1;
+    });
+    console.log(this.filteredPacientes);
+  }
+
+  selectPaciente(paciente) {
+    this.selectedPaciente = paciente;
+  }
 }
